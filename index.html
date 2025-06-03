@@ -8,7 +8,7 @@
 </head>
 
 <body id="root" class="bg-midnight">
-	<main class="container mx-auto">
+	<main class="container mx-auto pb-16">
 		<section id="main-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
 			<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
 			<div class="flex flex-col justify-center items-center gap-y-3 relative z-10 pb-8">
@@ -23,7 +23,7 @@
 		</section>
 
 		<!-- Trending movies -->
-		<section class="top-movies-section my-6 sm:my-4 p-4 sm:p-6">
+		<section class="top-movies-section my-6 sm:my-4 p-4 sm:p-6" id="trending-movies-section">
 			<h2 class="text-xl font-bold">Trending movies this week</h2>
 			<div class="w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="trending-movies-container">
 				<!-- Trending Movies -->
@@ -31,7 +31,7 @@
 		</section>
 		
 		<!-- Premiere -->
-		<section class="premiere-section my-6 sm:my-4 p-4 sm:p-6">
+		<section class="premiere-section my-6 sm:my-4 p-4 sm:p-6" id="onpremiere-movies-section">
 			<h2 class="text-xl font-bold">On Premiere</h2>
 			<div class="onpremiere-movies-container w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="onpremiere-movies-container">
 				<!-- Top 10 Movies -->
@@ -39,23 +39,49 @@
 		</section>
 
 		<!-- Categories / Genres -->
-		<section class="categories-section my-6 sm:my-4 p-4 sm:p-6">
+		<section class="categories-section my-6 sm:my-4 p-4 sm:p-6" id="genres-movies-section">
 			<h2 class="text-xl font-bold">Categories</h2>
 			<div class="w-full overflow-x-auto flex flex-wrap gap-4 py-4" id="genres-movies-container">
 				<!-- <div class="category-item px-3 py-1 rounded-md text-xs white bg-blue-800">Animation</div> -->
 			</div>
 		</section>
 
-		<nav class="bottom-bar">
-			<ul>
-				<li>Home</li>
-				<li>Live</li>
-				<li>Explore</li>
-				<li>My List</li>
-				<li>Profile</li>
+		<nav class="bottom-bar fixed bottom-0 left-0 w-full bg-midnight/70 backdrop-blur-lg shadow-[0_0_20px] shadow-midnight/10 z-50">
+			<ul class="flex justify-between items-center px-6 py-2">
+				<li class="flex flex-col items-center flex-1">
+					<a href="#" class="flex flex-col items-center w-full py-1 rounded-lg hover:bg-gray-800/60 transition">
+						<span class="text-2xl mb-1" aria-label="Home">🏠</span>
+						<span class="text-xs text-blue-400 font-semibold">Home</span>
+					</a>
+				</li>
+				<li class="flex flex-col items-center flex-1">
+					<a href="#" class="flex flex-col items-center w-full py-1 rounded-lg hover:bg-gray-800/60 transition">
+						<span class="text-2xl mb-1" aria-label="Live TV">📡</span>
+						<span class="text-xs text-gray-400">Live</span>
+					</a>
+				</li>
+				<li class="flex flex-col items-center flex-1">
+					<a href="#" class="flex flex-col items-center w-full py-1 rounded-lg hover:bg-gray-800/60 transition">
+						<span class="text-2xl mb-1" aria-label="Explore">🧭</span>
+						<span class="text-xs text-gray-400">Explore</span>
+					</a>
+				</li>
+				<li class="flex flex-col items-center flex-1">
+					<a href="#" class="flex flex-col items-center w-full py-1 rounded-lg hover:bg-gray-800/60 transition">
+						<span class="text-2xl mb-1" aria-label="My List">🗂️</span>
+						<span class="text-xs text-gray-400">My List</span>
+					</a>
+				</li>
+				<li class="flex flex-col items-center flex-1">
+					<a href="#" class="flex flex-col items-center w-full py-1 rounded-lg hover:bg-gray-800/60 transition">
+						<span class="text-2xl mb-1" aria-label="Profile">👤</span>
+						<span class="text-xs text-gray-400">Profile</span>
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</main>
+
 	<footer class="main-footer">
 
 	</footer>

@@ -11,7 +11,8 @@ body {
 
 /* Estilos personalizados para la barra de desplazamiento */
 *::-webkit-scrollbar {
-  height: 8px;
+  height: 4px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
