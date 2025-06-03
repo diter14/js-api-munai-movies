@@ -9,42 +9,50 @@
 
 <body id="root" class="bg-midnight">
 	<main class="container mx-auto pb-16">
-		<section id="main-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
-			<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
-			<div class="flex flex-col justify-center items-center gap-y-3 relative z-10 pb-8">
-				<img src="./src/assets/icons/play-icon-pro.svg" alt="Play" width="50px">
-				<h1 id="main-hero-banner-title" class="text-2xl font-bold text-white text-center px-4"></h1>
-				<!-- <div class="w-full flex flex-wrap gap-2 justify-center" id="genres-top-movie">
-					<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
-					<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
-					<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
-				</div> -->
-			</div>
-		</section>
 
-		<!-- Trending movies -->
-		<section class="top-movies-section my-6 sm:my-4 p-4 sm:p-6" id="trending-movies-section">
-			<h2 class="text-xl font-bold">Trending movies this week</h2>
-			<div class="w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="trending-movies-container">
-				<!-- Trending Movies -->
-			</div>
-		</section>
-		
-		<!-- Premiere -->
-		<section class="premiere-section my-6 sm:my-4 p-4 sm:p-6" id="onpremiere-movies-section">
-			<h2 class="text-xl font-bold">On Premiere</h2>
-			<div class="onpremiere-movies-container w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="onpremiere-movies-container">
-				<!-- Top 10 Movies -->
-			</div>
-		</section>
+		<div id="home-page-sections">
+			<section id="main-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
+				<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
+				<div class="flex flex-col justify-center items-center gap-y-3 relative z-10 pb-8">
+					<img src="./src/assets/icons/play-icon-pro.svg" alt="Play" width="50px">
+					<h1 id="main-hero-banner-title" class="text-2xl font-bold text-white text-center px-4"></h1>
+					<!-- <div class="w-full flex flex-wrap gap-2 justify-center" id="genres-top-movie">
+						<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
+						<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
+						<div class="category-item px-3 py-1 rounded-md text-xs text-white cursor-pointer bg-slate-700 hover:bg-slate-800 border-t border-slate-600">Animation</div>
+					</div> -->
+				</div>
+			</section>
+			<!-- Trending movies -->
+			<section class="top-movies-section my-6 sm:my-4 p-4 sm:p-6" id="trending-movies-section">
+				<h2 class="text-xl font-bold">Trending movies this week</h2>
+				<div class="w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="trending-movies-container">
+					<!-- Trending Movies -->
+				</div>
+			</section>
+			
+			<!-- Premiere -->
+			<section class="premiere-section my-6 sm:my-4 p-4 sm:p-6" id="onpremiere-movies-section">
+				<h2 class="text-xl font-bold">On Premiere</h2>
+				<div class="onpremiere-movies-container w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 py-4 touch-pan-x" id="onpremiere-movies-container">
+					<!-- Top 10 Movies -->
+				</div>
+			</section>
 
-		<!-- Categories / Genres -->
-		<section class="categories-section my-6 sm:my-4 p-4 sm:p-6" id="genres-movies-section">
-			<h2 class="text-xl font-bold">Categories</h2>
-			<div class="w-full overflow-x-auto flex flex-wrap gap-4 py-4" id="genres-movies-container">
-				<!-- <div class="category-item px-3 py-1 rounded-md text-xs white bg-blue-800">Animation</div> -->
+			<!-- Categories / Genres -->
+			<section class="categories-section my-6 sm:my-4 p-4 sm:p-6" id="genres-movies-section">
+				<h2 class="text-xl font-bold">Categories</h2>
+				<div class="w-full overflow-x-auto flex flex-wrap gap-4 py-4" id="genres-movies-container">
+					<!-- <div class="category-item px-3 py-1 rounded-md text-xs white bg-blue-800">Animation</div> -->
+				</div>
+			</section>
+		</div>
+
+		<div id="categories-page-sections" class="py-6">
+			<h1 id="categories-title" class="text-2xl font-bold text-white text-center px-4"></h1>
+			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4" id="categories-movies-container"></div>
 			</div>
-		</section>
+		</div>
 
 		<nav class="bottom-bar fixed bottom-0 left-0 w-full bg-midnight/70 backdrop-blur-lg shadow-[0_0_20px] shadow-midnight/10 z-50">
 			<ul class="flex justify-between items-center px-6 py-2">

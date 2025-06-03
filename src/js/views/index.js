@@ -6,6 +6,8 @@ import { $id } from '../utils';
 
 const HomePage = async () => {
   console.log('HomePage');
+  const homePageSectionsContainer = $id("home-page-sections");
+  homePageSectionsContainer.style.display = 'block';
   await renderTrendingMovies();
   await renderOnPremiereMovies();
   await renderMoviesGenresButtons();
@@ -30,25 +32,19 @@ const CategoriesPage = () => {
   renderMoviesByGenres({ genreId, genreName });
 }
 
-const renderMoviesCards = async({movies, cardArticleName, cardContainerElement, cardPosterSize, cardPosterClasses}) => {
-  try {
-    // const moviesCardsContainer = $id(cardContainerId);
-    // // console.log('Prueba método centralizado', await api[movieApiMethodName]());
-    // moviesCardsContainer.innerHTML = ''; // Limpiar contenedor
-    
-    // const movies = await api[movieApiMethodName]();
-    
+const renderMoviesCards = async({movies, cardArticleName, cardContainerElement, cardPosterSize, cardPosterClasses, cardPosterWidth}) => {
+  try {    
     movies.forEach(movie => {
       const movieArticle = document.createElement('article');
       movieArticle.id = `${cardArticleName}-${movie.id}`;
-      movieArticle.style.minWidth = '150px';
-      movieArticle.style.width = '150px';
+      movieArticle.style.minWidth = cardPosterWidth ?? '150px';
+      movieArticle.style.width = cardPosterWidth ?? '150px';
       movieArticle.classList.add('rounded-md', 'overflow-hidden', 'relative');
       
       const movieImgPoster = document.createElement('img');
       movieImgPoster.src = `https://image.tmdb.org/t/p/${cardPosterSize ?? 'w300'}${movie.poster_path}`;
       movieImgPoster.alt = movie.title;
-      movieImgPoster.width = 150;
+      movieImgPoster.style.width = cardPosterWidth ?? '150px';
       cardPosterClasses = cardPosterClasses ?? ['w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-300', 'ease-in-out', 'hover:scale-110']
       movieImgPoster.classList.add(...cardPosterClasses);
       
@@ -70,23 +66,6 @@ const renderTrendingMovies = async() => {
     state.topRatedMovie = [...trendingMovies].shift();
     renderTopRatedMovie(state.topRatedMovie);
     renderMoviesCards({movies: trendingMovies,cardArticleName:'trending-movie',cardContainerElement:trendingMoviesContainer});
-    
-    // trendingMovies.forEach(movie => {
-    //   const movieArticle = document.createElement('article');
-    //   movieArticle.id = `movie-${movie.id}`;
-    //   movieArticle.style.minWidth = '150px';
-    //   movieArticle.style.width = '150px';
-    //   movieArticle.classList.add('rounded-md', 'overflow-hidden', 'relative');
-      
-    //   const movieImgPoster = document.createElement('img');
-    //   movieImgPoster.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-    //   movieImgPoster.alt = movie.title;
-    //   movieImgPoster.width = 150;
-    //   movieImgPoster.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-300', 'ease-in-out', 'hover:scale-110');
-      
-    //   movieArticle.appendChild(movieImgPoster);
-    //   trendingMoviesContainer.appendChild(movieArticle);
-    // });
   } catch (error) {
     console.error('Error al renderizar películas tendencia:', error);
   }
@@ -101,22 +80,6 @@ const renderOnPremiereMovies = async() => {
 
     renderMoviesCards({movies: onPremiereMovies,cardArticleName:'on-premiere-movie',cardContainerElement:onPremiereMoviesContainer});
     
-    // onPremiereMovies.forEach(movie => {
-    //   const movieArticle = document.createElement('article');
-    //   movieArticle.id = `movie-${movie.id}`;
-    //   movieArticle.style.minWidth = '150px';
-    //   movieArticle.style.width = '150px';
-    //   movieArticle.classList.add('rounded-md', 'overflow-hidden', 'relative');
-      
-    //   const movieImgPoster = document.createElement('img');
-    //   movieImgPoster.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
-    //   movieImgPoster.alt = movie.title;
-    //   movieImgPoster.width = 150;
-    //   movieImgPoster.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-300', 'ease-in-out', 'hover:scale-110');
-      
-    //   movieArticle.appendChild(movieImgPoster);
-    //   onPremiereMoviesContainer.appendChild(movieArticle);
-    // });
   } catch (error) {
     console.error('Error al renderizar películas en estreno:', error);
   }
@@ -124,13 +87,17 @@ const renderOnPremiereMovies = async() => {
 
 const renderMoviesByGenres = async({genreId, genreName}) => {
   try {
-    const onPremiereMoviesContainer = $id("onpremiere-movies-container");
-    onPremiereMoviesContainer.innerHTML = ''; // Limpiar contenedor
+    const categoriesTitleElement = $id("categories-title");
+    const categoriesGalleryContainer = $id("categories-movies-container");
+    const homePageSectionsContainer = $id("home-page-sections");
+    categoriesGalleryContainer.innerHTML = ''; // Limpiar contenedor
+    categoriesTitleElement.textContent = decodeURIComponent(genreName);
+    homePageSectionsContainer.style.display = 'none'; // Oculta secciones de página Home
     
     const moviesByGenre = await api.getMoviesByGenreId(genreId);
     console.log(`Genre ${genreName}`,moviesByGenre);
 
-    // renderMoviesCards({movies: onPremiereMovies,cardArticleName:'on-premiere-movie',cardContainerElement:onPremiereMoviesContainer});
+    renderMoviesCards({movies: moviesByGenre,cardArticleName:'category-movie',cardContainerElement:categoriesGalleryContainer,cardPosterWidth: '100%'});
     
   } catch (error) {
     console.error('Error al renderizar películas en estreno:', error);
