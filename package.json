@@ -1,0 +1,28 @@
+{
+  "name": "munai-movies",
+  "version": "1.0.0",
+  "description": "Munai Movies & Series & Streaming",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diter Terrones",
+  "inspiration": [
+    "https://www.behance.net/gallery/198896501/Movie-Streaming-App-UI-Kit?tracking_source=search_projects|movie+app+design&l=1",
+    "https://www.behance.net/gallery/35645535/Streaming-Website-UIUX-Design?tracking_source=search_projects|streaming+website+design&l=16"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.6",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.6",
+    "axios": "^1.9.0"
+  }
+}
