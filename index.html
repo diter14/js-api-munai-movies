@@ -10,6 +10,7 @@
 <body id="root" class="bg-midnight">
 	<main class="container mx-auto pb-16">
 
+		<!-- Home Page -->
 		<div id="home-page-sections">
 			<section id="main-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
 				<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
@@ -48,9 +49,15 @@
 			</section>
 		</div>
 
+		<!-- Categories Page -->
 		<div id="categories-page-sections" class="py-6">
-			<h1 id="categories-title" class="text-2xl font-bold text-white text-center px-4"></h1>
-			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4" id="categories-movies-container"></div>
+			<div class="flex md:px-0 px-4">
+				<a href="/" class="flex justify-center items-center">
+					<img src="./src/assets/icons/left-arrow-icon.svg" alt="<" width="20px">
+				</a>
+				<h1 id="categories-title" class="text-3xl font-bold text-white text-center py-3 md:py-6 flex-1"></h1>
+			</div>
+			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4 md:px-0 px-4" id="categories-movies-container">
 			</div>
 		</div>
 

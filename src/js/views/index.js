@@ -6,8 +6,11 @@ import { $id } from '../utils';
 
 const HomePage = async () => {
   console.log('HomePage');
-  const homePageSectionsContainer = $id("home-page-sections");
+  const homePageSectionsContainer = $id('home-page-sections');
+  const categoriesPageSectionsContainer = $id('categories-page-sections');
   homePageSectionsContainer.style.display = 'block';
+  categoriesPageSectionsContainer.style.display = 'none'; // Oculta secciones de página 
+  
   await renderTrendingMovies();
   await renderOnPremiereMovies();
   await renderMoviesGenresButtons();
@@ -29,6 +32,12 @@ const CategoriesPage = () => {
   console.log('CategoriesPage');
   let [ genreHash, genreData ] = window.location.hash.split('=');
   let [ genreId, genreName ] = genreData.split('-');
+
+  const homePageSectionsContainer = $id('home-page-sections');
+  const categoriesPageSectionsContainer = $id('categories-page-sections');
+  homePageSectionsContainer.style.display = 'none'; // Oculta secciones de página Home
+  categoriesPageSectionsContainer.style.display = 'block'; 
+
   renderMoviesByGenres({ genreId, genreName });
 }
 
@@ -87,12 +96,10 @@ const renderOnPremiereMovies = async() => {
 
 const renderMoviesByGenres = async({genreId, genreName}) => {
   try {
-    const categoriesTitleElement = $id("categories-title");
-    const categoriesGalleryContainer = $id("categories-movies-container");
-    const homePageSectionsContainer = $id("home-page-sections");
-    categoriesGalleryContainer.innerHTML = ''; // Limpiar contenedor
+    const categoriesTitleElement = $id('categories-title');
+    const categoriesGalleryContainer = $id('categories-movies-container');
     categoriesTitleElement.textContent = decodeURIComponent(genreName);
-    homePageSectionsContainer.style.display = 'none'; // Oculta secciones de página Home
+    categoriesGalleryContainer.innerHTML = ''; // Limpiar contenedor
     
     const moviesByGenre = await api.getMoviesByGenreId(genreId);
     console.log(`Genre ${genreName}`,moviesByGenre);
