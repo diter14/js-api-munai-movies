@@ -10,8 +10,25 @@
 <body id="root" class="bg-midnight">
 	<main class="container mx-auto pb-16">
 
+		<!-- Search Button -->
+		<div class="fixed top-4 right-4 z-50">
+			<div class="relative">
+				<button id="search-button" class="w-10 h-10 rounded-full hover:bg-gray-800 flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+					</svg>
+				</button>
+				<div id="search-container" class="absolute right-0 top-0 opacity-0 pointer-events-none transition-all duration-300">
+					<input type="text" 
+						placeholder="Buscar ..." 
+						class="w-0 h-10 px-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all duration-300"
+					>
+				</div>
+			</div>
+		</div>
+
 		<!-- Home Page -->
-		<div id="home-page-sections">
+		<div id="home-page-section">
 			<section id="main-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
 				<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
 				<div class="flex flex-col justify-center items-center gap-y-3 relative z-10 pb-8">
@@ -50,7 +67,7 @@
 		</div>
 
 		<!-- Categories Page -->
-		<div id="categories-page-sections" class="py-6">
+		<div id="categories-page-section" class="py-6">
 			<div class="flex md:px-0 px-4">
 				<a href="/" class="flex justify-center items-center">
 					<img src="./src/assets/icons/left-arrow-icon.svg" alt="<" width="20px">
@@ -58,6 +75,18 @@
 				<h1 id="categories-title" class="text-3xl font-bold text-white text-center py-3 md:py-6 flex-1"></h1>
 			</div>
 			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4 md:px-0 px-4" id="categories-movies-container">
+			</div>
+		</div>
+
+		<!-- Search Page -->
+		<div id="search-page-section" class="py-6">
+			<div class="flex md:px-0 px-4">
+				<a href="/" class="flex justify-center items-center">
+					<img src="./src/assets/icons/left-arrow-icon.svg" alt="<" width="20px">
+				</a>
+				<h1 id="search-page-title" class="text-3xl font-bold text-white text-center py-3 md:py-6 flex-1"></h1>
+			</div>
+			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4 md:px-0 px-4" id="search-movies-container">
 			</div>
 		</div>
 
@@ -100,6 +129,7 @@
 	<footer class="main-footer">
 
 	</footer>
+	<script type="module" src="./src/js/search.js"></script>
 	<script type="module" src="./src/js/index.js"></script>
 </body>
 
