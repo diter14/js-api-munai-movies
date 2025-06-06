@@ -94,6 +94,20 @@ const api = {
       return [];
     }
   },
+  getMoviesByQuery: async(query) => {
+    try {
+      const response = await moviesApi.get(`${MUNAI_MOVIES_API_URL}/search/movie`,{
+        params: {
+          query
+        }
+      });
+      const data = response.data;
+      return data.results;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
 }
 
 export {
