@@ -1,15 +1,15 @@
-// import { getMovieGenres, getOnPremiereMovies, getTrendingMovies } from '../services/theMovieDBApi';
 import { api } from '../services/theMovieDBApi';
-
 import { state } from '../store/state';
 import { $id } from '../utils';
 
 const HomePage = async () => {
   console.log('HomePage');
-  const homePageSectionsContainer = $id('home-page-sections');
-  const categoriesPageSectionsContainer = $id('categories-page-sections');
+  const homePageSectionsContainer = $id('home-page-section');
+  const categoriesPageSectionsContainer = $id('categories-page-section');
+  const searchPageSectionsContainer = $id('search-page-section');
   homePageSectionsContainer.style.display = 'block';
-  categoriesPageSectionsContainer.style.display = 'none'; // Oculta secciones de página 
+  categoriesPageSectionsContainer.style.display = 'none'; 
+  searchPageSectionsContainer.style.display = 'none'; 
   
   await renderTrendingMovies();
   await renderOnPremiereMovies();
@@ -22,6 +22,19 @@ const TrendsPage = () => {
 
 const SearchPage = () => {
   console.log('SearchPage');
+  let [ searchHash, searchText ] = window.location.hash.split('=');
+  console.log(searchText);
+  
+  const homePageSectionsContainer = $id('home-page-section');
+  const categoriesPageSectionsContainer = $id('categories-page-section');
+  const searchPageSectionsContainer = $id('search-page-section');
+  homePageSectionsContainer.style.display = 'none';
+  categoriesPageSectionsContainer.style.display = 'none'; 
+  searchPageSectionsContainer.style.display = 'block'; 
+
+  renderMoviesByQuerySearch({
+    movieQuery: searchText
+  })
 }
 
 const MovieDetailsPage = () => {
@@ -33,10 +46,12 @@ const CategoriesPage = () => {
   let [ genreHash, genreData ] = window.location.hash.split('=');
   let [ genreId, genreName ] = genreData.split('-');
 
-  const homePageSectionsContainer = $id('home-page-sections');
-  const categoriesPageSectionsContainer = $id('categories-page-sections');
-  homePageSectionsContainer.style.display = 'none'; // Oculta secciones de página Home
+  const homePageSectionsContainer = $id('home-page-section');
+  const categoriesPageSectionsContainer = $id('categories-page-section');
+  const searchPageSectionsContainer = $id('search-page-section');
+  homePageSectionsContainer.style.display = 'none';
   categoriesPageSectionsContainer.style.display = 'block'; 
+  searchPageSectionsContainer.style.display = 'none'; 
 
   renderMoviesByGenres({ genreId, genreName });
 }
@@ -104,7 +119,34 @@ const renderMoviesByGenres = async({genreId, genreName}) => {
     const moviesByGenre = await api.getMoviesByGenreId(genreId);
     console.log(`Genre ${genreName}`,moviesByGenre);
 
-    renderMoviesCards({movies: moviesByGenre,cardArticleName:'category-movie',cardContainerElement:categoriesGalleryContainer,cardPosterWidth: '100%'});
+    renderMoviesCards({
+      movies: moviesByGenre,
+      cardArticleName:'category-movie',
+      cardContainerElement:categoriesGalleryContainer,
+      cardPosterWidth: '100%'
+    });
+    
+  } catch (error) {
+    console.error('Error al renderizar películas en estreno:', error);
+  }
+}
+
+const renderMoviesByQuerySearch = async({movieQuery}) => {
+  try {
+    const searchTitleElement = $id('search-page-title');
+    const searchGalleryContainer = $id('search-movies-container');
+    searchTitleElement.textContent = decodeURIComponent(movieQuery);
+    searchGalleryContainer.innerHTML = ''; // Limpiar contenedor
+    
+    const moviesByQuerySearch = await api.getMoviesByQuery(movieQuery);
+    console.log(`Search by:`,movieQuery);
+
+    renderMoviesCards({
+      movies: moviesByQuerySearch,
+      cardArticleName:'searched-movie',
+      cardContainerElement:searchGalleryContainer,
+      cardPosterWidth: '100%'
+    });
     
   } catch (error) {
     console.error('Error al renderizar películas en estreno:', error);
