@@ -90,6 +90,54 @@
 			</div>
 		</div>
 
+		<!-- Movie Details Page -->
+		<div id="movie-details-page-section" class="pb-6">
+			<!-- <div class="flex md:px-0 px-4 items-center">
+				<button class="flex justify-center items-center cursor-pointer back-button">
+					<img src="./src/assets/icons/left-arrow-icon.svg" alt="<" width="20px">
+				</button>
+			</div> -->
+			<section id="movie-details-hero-banner" class="hero-banner h-[500px] bg-center bg-no-repeat bg-cover flex flex-col justify-end relative">
+				<div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
+				<div class="flex flex-col justify-center items-center gap-y-3 relative z-10 pb-8">
+					<img src="./src/assets/icons/play-icon-pro.svg" alt="Play" width="50px">
+					<h1 id="movie-details-title" class="text-3xl font-bold text-white text-center py-3 md:py-6 flex-1"></h1>
+				</div>
+			</section>
+			<div class="px-4 md:px-0">
+				<!-- Movie Details Header -->
+				<div class="flex flex-wrap items-center gap-4 text-white text-sm mb-2">
+					<span class="flex items-center gap-2">
+						<svg class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
+						<span id="movie-details-vote" class="font-semibold">0.0</span>
+					</span>
+					<span class="flex items-center justify-center">●</span>
+					<span id="movie-details-duration">0m</span>
+					<span class="flex items-center justify-center">●</span>
+					<span id="movie-details-genres">Categories</span>
+				</div>
+
+				<!-- Chips: Main Category, Year, Country -->
+				<div class="flex flex-wrap gap-2 mb-3">
+					<span id="movie-details-main-category" class="px-3 py-1 rounded-full text-xs bg-slate-700 text-white border-t border-slate-600">Action</span>
+					<span id="movie-details-year" class="px-3 py-1 rounded-full text-xs bg-slate-700 text-white border-t border-slate-600">2022</span>
+					<span id="movie-details-country" class="px-3 py-1 rounded-full text-xs bg-slate-700 text-white border-t border-slate-600">United States</span>
+				</div>
+
+				<!-- Overview -->
+				<p id="movie-details-overview" class="text-white text-left text-sm">
+					<!-- Descripción de la película -->
+				</p>
+
+				<!-- View More (si es necesario) -->
+				<button id="movie-details-view-more" class="text-sky-400 text-xs font-semibold hover:underline focus:outline-none hidden">
+					View More
+				</button>
+			</div>
+			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4 md:px-0 px-4" id="movie-details-container">
+			</div>
+		</div>
+
 		<nav class="bottom-bar fixed bottom-0 left-0 w-full bg-midnight/70 backdrop-blur-lg shadow-[0_0_20px] shadow-midnight/10 z-50">
 			<ul class="flex justify-between items-center px-6 py-2">
 				<li class="flex flex-col items-center flex-1">
