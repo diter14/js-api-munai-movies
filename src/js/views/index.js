@@ -1,15 +1,18 @@
 import { api } from '../services/theMovieDBApi';
 import { state } from '../store/state';
 import { $id } from '../utils';
+import { formatDuration } from '../utils/index.js';
 
 const HomePage = async () => {
   console.log('HomePage');
   const homePageSectionsContainer = $id('home-page-section');
   const categoriesPageSectionsContainer = $id('categories-page-section');
   const searchPageSectionsContainer = $id('search-page-section');
+  const movieDetailsPageSectionsContainer = $id('movie-details-page-section');
   homePageSectionsContainer.style.display = 'block';
   categoriesPageSectionsContainer.style.display = 'none'; 
   searchPageSectionsContainer.style.display = 'none'; 
+  movieDetailsPageSectionsContainer.style.display = 'none'; 
   
   await renderTrendingMovies();
   await renderOnPremiereMovies();
@@ -37,8 +40,30 @@ const SearchPage = () => {
   })
 }
 
-const MovieDetailsPage = () => {
+const MovieDetailsPage = async () => {
   console.log('MovieDetailsPage');
+  let [ movieHash, movieId ] = window.location.hash.split('=');
+  const movieDetails = await api.getMovieDetails(movieId);
+  console.log(movieDetails);
+  $id('movie-details-hero-banner').classList.add(`bg-[url(https://image.tmdb.org/t/p/w780${movieDetails.backdrop_path})]`);
+  $id('movie-details-hero-banner').style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${movieDetails.backdrop_path})`;
+  $id('movie-details-title').textContent = movieDetails?.title ?? 'Movie Not Found';
+  $id('movie-details-overview').textContent = movieDetails?.overview ?? '-';
+  $id('movie-details-vote').textContent = movieDetails?.vote_average ?? '-';
+  $id('movie-details-duration').textContent = formatDuration(movieDetails?.runtime);
+  $id('movie-details-genres').textContent = movieDetails?.genres.map(genre => genre.name).join(', ') ?? '-';
+  $id('movie-details-main-category').textContent = movieDetails?.genres[0].name ?? '-';
+  $id('movie-details-year').textContent = movieDetails?.release_date.split('-')[0] ?? '-';
+  $id('movie-details-country').textContent = movieDetails?.production_countries[0].name ?? '-';
+  //
+  const movieDetailsPageSectionsContainer = $id('movie-details-page-section');
+  const homePageSectionsContainer = $id('home-page-section');
+  const categoriesPageSectionsContainer = $id('categories-page-section');
+  const searchPageSectionsContainer = $id('search-page-section');
+  homePageSectionsContainer.style.display = 'none';
+  categoriesPageSectionsContainer.style.display = 'none'; 
+  searchPageSectionsContainer.style.display = 'none'; 
+  movieDetailsPageSectionsContainer.style.display = 'block'; 
 }
 
 const CategoriesPage = () => {
@@ -69,9 +94,12 @@ const renderMoviesCards = async({movies, cardArticleName, cardContainerElement, 
       movieImgPoster.src = `https://image.tmdb.org/t/p/${cardPosterSize ?? 'w300'}${movie.poster_path}`;
       movieImgPoster.alt = movie.title;
       movieImgPoster.style.width = cardPosterWidth ?? '150px';
-      cardPosterClasses = cardPosterClasses ?? ['w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-300', 'ease-in-out', 'hover:scale-110']
+      cardPosterClasses = cardPosterClasses ?? ['w-full', 'h-full', 'object-cover', 'cursor-pointer', 'transition-transform', 'duration-300', 'ease-in-out', 'hover:scale-110']
       movieImgPoster.classList.add(...cardPosterClasses);
       
+      movieArticle.addEventListener('click', (e) => {
+        window.location.hash = `#movie=${movie.id}`
+      })
       movieArticle.appendChild(movieImgPoster);
       cardContainerElement.appendChild(movieArticle);
     });
