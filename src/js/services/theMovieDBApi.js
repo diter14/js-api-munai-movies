@@ -107,6 +107,16 @@ const api = {
       console.error(error);
       return [];
     }
+  },
+  getMovieDetails: async(movieId) => {
+    try {
+      const response = await moviesApi.get(`${MUNAI_MOVIES_API_URL}/movie/${movieId}`);
+      const data = response.data;
+      return data;
+    } catch(error) {
+      console.log(error);
+      return {};
+    }
   }
 }
 
