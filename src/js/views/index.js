@@ -44,7 +44,9 @@ const MovieDetailsPage = async () => {
   console.log('MovieDetailsPage');
   let [ movieHash, movieId ] = window.location.hash.split('=');
   const movieDetails = await api.getMovieDetails(movieId);
+  const relatedMovies = await api.getRelatedMovies(movieId);
   console.log(movieDetails);
+  console.log(relatedMovies);
   $id('movie-details-hero-banner').classList.add(`bg-[url(https://image.tmdb.org/t/p/w780${movieDetails.backdrop_path})]`);
   $id('movie-details-hero-banner').style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${movieDetails.backdrop_path})`;
   $id('movie-details-title').textContent = movieDetails?.title ?? 'Movie Not Found';
@@ -55,6 +57,15 @@ const MovieDetailsPage = async () => {
   $id('movie-details-main-category').textContent = movieDetails?.genres[0].name ?? '-';
   $id('movie-details-year').textContent = movieDetails?.release_date.split('-')[0] ?? '-';
   $id('movie-details-country').textContent = movieDetails?.production_countries[0].name ?? '-';
+
+  const relatedMoviesContainer = $id("movie-details-related");
+    relatedMoviesContainer.innerHTML = ''; // Limpiar contenedor
+
+  await renderMoviesCards({
+    movies: relatedMovies,
+    cardArticleName: 'related-movie',
+    cardContainerElement: relatedMoviesContainer
+  });
   //
   const movieDetailsPageSectionsContainer = $id('movie-details-page-section');
   const homePageSectionsContainer = $id('home-page-section');
