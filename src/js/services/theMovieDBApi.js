@@ -117,6 +117,16 @@ const api = {
       console.log(error);
       return {};
     }
+  },
+  getRelatedMovies: async(movieId) => {
+    try {
+      const response = await moviesApi.get(`${MUNAI_MOVIES_API_URL}/movie/${movieId}/similar`);
+      const data = response.data.results;
+      return data;
+    } catch(error) {
+      console.log(error);
+      return [];
+    }
   }
 }
 
