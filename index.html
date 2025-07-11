@@ -104,6 +104,7 @@
 					<h1 id="movie-details-title" class="text-3xl font-bold text-white text-center py-3 md:py-6 flex-1"></h1>
 				</div>
 			</section>
+
 			<div class="px-4 md:px-0">
 				<!-- Movie Details Header -->
 				<div class="flex flex-wrap items-center gap-4 text-white text-sm mb-2">
@@ -134,7 +135,13 @@
 					View More
 				</button>
 			</div>
-			<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 py-4 md:px-0 px-4" id="movie-details-container">
+			
+			<div class="px-4 py-4 text-left">
+				<h2 class="text-2xl font-bold">Recommended Movies</h2>
+			</div>
+
+			<div class="w-full overflow-x-auto whitespace-nowrap flex flex-nowrap gap-4 px-4 py-4 touch-pan-x" id="movie-details-related">
+				<!-- Related Recommended Movies -->
 			</div>
 		</div>
 
